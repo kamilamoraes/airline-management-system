@@ -18,19 +18,23 @@ if (opcao == "1")
 {
     Console.WriteLine("Você selecionou Passageiros.");
 }
-if (opcao == "2")
+else if (opcao == "2")
 {
     Console.WriteLine("Você selecionou Voos.");
 }
-if (opcao == "3")
+else if (opcao == "3")
 {
     Console.WriteLine("Você selecionou Aeronaves.");
 }
-if (opcao == "4")
+else if (opcao == "4")
 {
     Console.WriteLine("Você selecionou Reservas.");
 }
-if (opcao == "0")
+else if (opcao == "0")
 {
     Console.WriteLine("Você escolheu sair do sistema.");
+}
+else
+{
+    Console.WriteLine("Opção inválida.");
 }
