@@ -1,40 +1,45 @@
-﻿Console.WriteLine("===========================");
-Console.WriteLine(" AIRLINE MANAGEMENT SYSTEM ");
-Console.WriteLine("===========================");
+﻿string? opcao = "";
 
-Console.WriteLine("1 - Passageiros ");
-Console.WriteLine("2 - Voos ");
-Console.WriteLine("3 - Aeronaves ");
-Console.WriteLine("4 - Reservas ");
-Console.WriteLine("0 - Sair ");
+while (opcao != "0")
+{
+    Console.WriteLine("===========================");
+    Console.WriteLine(" AIRLINE MANAGEMENT SYSTEM ");
+    Console.WriteLine("===========================");
 
-Console.WriteLine("Escolha uma opção: ");
+    Console.WriteLine("1 - Passageiros ");
+    Console.WriteLine("2 - Voos ");
+    Console.WriteLine("3 - Aeronaves ");
+    Console.WriteLine("4 - Reservas ");
+    Console.WriteLine("0 - Sair ");
 
-string? opcao = Console.ReadLine(); 
+    Console.WriteLine("Escolha uma opção: ");
 
-Console.WriteLine($"Você escolheu: {opcao}");
+    opcao = Console.ReadLine(); 
 
-if (opcao == "1")
-{
-    Console.WriteLine("Você selecionou Passageiros.");
-}
-else if (opcao == "2")
-{
-    Console.WriteLine("Você selecionou Voos.");
-}
-else if (opcao == "3")
-{
-    Console.WriteLine("Você selecionou Aeronaves.");
-}
-else if (opcao == "4")
-{
-    Console.WriteLine("Você selecionou Reservas.");
-}
-else if (opcao == "0")
-{
-    Console.WriteLine("Você escolheu sair do sistema.");
-}
-else
-{
-    Console.WriteLine("Opção inválida.");
+    Console.WriteLine($"Você escolheu: {opcao}");
+
+    if (opcao == "1")
+    {
+        Console.WriteLine("Você selecionou Passageiros.");
+    }
+    else if (opcao == "2")
+    {
+        Console.WriteLine("Você selecionou Voos.");
+    }
+    else if (opcao == "3")
+    {
+        Console.WriteLine("Você selecionou Aeronaves.");
+    }
+    else if (opcao == "4")
+    {
+        Console.WriteLine("Você selecionou Reservas.");
+    }
+    else if (opcao == "0")
+    {
+        Console.WriteLine("Você escolheu sair do sistema.");
+    }
+    else
+    {
+        Console.WriteLine("Opção inválida.");
+    }
 }
