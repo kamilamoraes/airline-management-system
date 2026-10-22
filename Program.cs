@@ -1,4 +1,5 @@
 ﻿string? opcao = "";
+string? opcaoPassageiros = "";
 
 while (opcao != "0")
 {
@@ -25,7 +26,21 @@ while (opcao != "0")
 
     if (opcao == "1")
     {
-        Console.WriteLine("Você selecionou Passageiros.");
+        Console.WriteLine("=============================");
+        Console.WriteLine("         PASSAGEIROS         ");
+        Console.WriteLine("=============================");
+        Console.WriteLine("1 - Cadastrar passageiro");
+        Console.WriteLine("2 - Listar passageiros");
+        Console.WriteLine("0 - Voltar ao menu principal");
+        Console.WriteLine("Escolha uma opção:");
+
+        opcaoPassageiros = Console.ReadLine();
+
+        if (opcaoPassageiros == "0")
+        {
+            Console.WriteLine("Voltando ao menu principal...");
+        }
+
     }
     else if (opcao == "2")
     {
