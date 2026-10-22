@@ -18,6 +18,11 @@ while (opcao != "0")
 
     Console.WriteLine($"Você escolheu: {opcao}");
 
+    if (opcao == "")
+    {
+       Console.WriteLine("Você não digitou nenhuma opção. Tente novamente.");
+    }
+
     if (opcao == "1")
     {
         Console.WriteLine("Você selecionou Passageiros.");
@@ -38,7 +43,7 @@ while (opcao != "0")
     {
         Console.WriteLine("Você escolheu sair do sistema.");
     }
-    else
+    else if (opcao != "")
     {
         Console.WriteLine("Opção inválida.");
     }
