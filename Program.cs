@@ -42,6 +42,7 @@ while (opcao != "0")
     else if (opcao == "0")
     {
         Console.WriteLine("Você escolheu sair do sistema.");
+        Console.WriteLine("Encerrando o Airline Management System. Até mais!");
     }
     else if (opcao != "")
     {
