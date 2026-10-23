@@ -51,7 +51,8 @@ while (opcao != "0")
         }
         else if (opcaoPassageiros == "2")
         {
-           Console.WriteLine("Você selecionou Listar passageiros.");     
+           Console.WriteLine("Você selecionou Listar passageiros.");
+           Console.WriteLine("A listagem de passageiros será implementada em breve.");     
         }
          else
         {
