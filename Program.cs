@@ -24,8 +24,12 @@ while (opcao != "0")
        Console.WriteLine("Você não digitou nenhuma opção. Tente novamente.");
     }
 
-    if (opcao == "1")
+    else if (opcao == "1")
     {
+
+        while (opcaoPassageiros != "0")
+        {
+
         Console.WriteLine("=============================");
         Console.WriteLine("         PASSAGEIROS         ");
         Console.WriteLine("=============================");
@@ -41,6 +45,8 @@ while (opcao != "0")
             Console.WriteLine("Voltando ao menu principal...");
         }
 
+
+        }
     }
     else if (opcao == "2")
     {
