@@ -48,6 +48,14 @@ while (opcao != "0")
         {
            Console.WriteLine("Você selecionou Cadastrar passageiro.");     
         }
+        else if (opcaoPassageiros == "2")
+        {
+           Console.WriteLine("Você selecionou Listar passageiros.");     
+        }
+         else
+        {
+           Console.WriteLine("Opção inválida. Tente novamente.");     
+        }
 
         }
     }
