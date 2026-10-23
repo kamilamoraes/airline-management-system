@@ -44,7 +44,10 @@ while (opcao != "0")
         {
             Console.WriteLine("Voltando ao menu principal...");
         }
-
+        else if (opcaoPassageiros == "1")
+        {
+           Console.WriteLine("Você selecionou Cadastrar passageiro.");     
+        }
 
         }
     }
