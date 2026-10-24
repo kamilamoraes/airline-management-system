@@ -39,6 +39,8 @@ while (opcao != "0")
         Console.WriteLine("Escolha uma opção:");
 
         opcaoPassageiros = Console.ReadLine();
+        
+        Console. Clear();
 
         if (opcaoPassageiros == "0")
         {
