@@ -50,7 +50,11 @@ while (opcao != "0")
         else if (opcaoPassageiros == "1")
         {
            Console.WriteLine("Você selecionou Cadastrar passageiro.");
-           Console.WriteLine("A funcionalidade de cadastro será implementada em breve.");     
+           Console.WriteLine("Digite o nome do passageiro:.");
+
+           string? nome = Console.ReadLine();
+
+           Console.WriteLine($"Nome informado: {nome}");    
         }
         else if (opcaoPassageiros == "2")
         {
