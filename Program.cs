@@ -39,12 +39,13 @@ while (opcao != "0")
         Console.WriteLine("Escolha uma opção:");
 
         opcaoPassageiros = Console.ReadLine();
-        
+
         Console. Clear();
 
         if (opcaoPassageiros == "0")
         {
             Console.WriteLine("Voltando ao menu principal...");
+            Console.WriteLine("Menu principal carregado.");
         }
         else if (opcaoPassageiros == "1")
         {
