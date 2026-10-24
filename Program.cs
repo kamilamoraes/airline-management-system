@@ -53,6 +53,11 @@ while (opcao != "0")
            Console.WriteLine("Digite o nome do passageiro:.");
            string? nome = Console.ReadLine();
 
+           if (string. IsNullOrWhiteSpace(nome))
+            {
+                Console.WriteLine("O nome não pode ficar vazio.");
+            }
+
            Console.WriteLine("Digite o sobrenome do passageiro:.");
            string? sobrenome = Console.ReadLine();
 
