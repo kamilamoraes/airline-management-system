@@ -1,4 +1,5 @@
 ﻿string? opcao = "";
+List<string> passageiros = new List<string>();
 string? opcaoPassageiros = "";
 
 while (opcao != "0")
@@ -69,7 +70,11 @@ while (opcao != "0")
             }
             else
             {
-                Console.WriteLine($"Nome completo: {nome} {sobrenome}"); 
+                string nomeCompleto = $"{nome} {sobrenome}";
+
+                passageiros.Add(nomeCompleto);
+
+                Console.WriteLine($"Passageiro cadastrado: {nomeCompleto}");
             }
         }
 
