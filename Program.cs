@@ -28,6 +28,8 @@ while (opcao != "0")
     else if (opcao == "1")
     {
 
+        opcaoPassageiros = "";
+
         while (opcaoPassageiros != "0")
         {
 
@@ -81,14 +83,20 @@ while (opcao != "0")
     }
         else if (opcaoPassageiros == "2")
         {
-           Console.WriteLine("Você selecionou Listar passageiros.");
-           Console.WriteLine("A listagem de passageiros será implementada em breve.");     
-        }
-         else
-        {
-           Console.WriteLine("Opção inválida. Tente novamente.");     
-        }
+            if (passageiros.Count == 0)
+            {
+                Console.WriteLine("Nenhum passageiro cadastrado.");      
+            }
+            else
+            {
+                Console.WriteLine("Passageiros cadastrados:");
 
+                foreach (string passageiro in passageiros)
+                {
+                    Console.WriteLine(passageiro);    
+                }       
+            }
+        }
         }
     }
     else if (opcao == "2")
@@ -113,3 +121,4 @@ while (opcao != "0")
         Console.WriteLine("Opção inválida.");
     }
 }
+
