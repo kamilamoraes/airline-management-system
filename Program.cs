@@ -98,6 +98,49 @@ while (opcao != "0")
                 }     
             }
         }
+
+         else if (opcaoPassageiros == "3")
+        {
+            if (passageiros.Count == 0)
+            {
+                Console.WriteLine("Nenhum passageiro cadastrado para remover.");
+            }
+            else
+            {
+                Console.WriteLine("Passageiros cadastrados:");
+
+            for (int i = 0; i < passageiros.Count; i++)
+            {
+                Console.WriteLine($"{i + 1} - {passageiros[i]}");
+            }
+
+                Console.WriteLine("Digite o número do passageiro que deseja remover:");
+
+                string? entrada = Console.ReadLine();
+
+            if (int.TryParse(entrada, out int numero))
+            {
+            if (numero >= 1 && numero <= passageiros.Count)
+            {
+                string passageiroRemovido = passageiros[numero - 1];
+
+                passageiros.RemoveAt(numero - 1);
+
+                Console.WriteLine($"Passageiro removido: {passageiroRemovido}");
+            }
+            else
+            {
+            Console.WriteLine("Número de passageiro inválido.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Digite um número válido.");
+        }
+
+            }
+        }
+
         }
     }
     else if (opcao == "2")
