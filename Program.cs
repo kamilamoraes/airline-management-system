@@ -38,6 +38,7 @@ while (opcao != "0")
         Console.WriteLine("=============================");
         Console.WriteLine("1 - Cadastrar passageiro");
         Console.WriteLine("2 - Listar passageiros");
+        Console.WriteLine("3 - Remover passageiro");
         Console.WriteLine("0 - Voltar ao menu principal");
         Console.WriteLine("Escolha uma opção:");
 
@@ -91,10 +92,10 @@ while (opcao != "0")
             {
                 Console.WriteLine("Passageiros cadastrados:");
 
-                foreach (string passageiro in passageiros)
+                for (int i = 0; i < passageiros.Count; i++)
                 {
-                    Console.WriteLine(passageiro);    
-                }       
+                    Console.WriteLine($"{i + 1} - {passageiros[i]}");
+                }     
             }
         }
         }
