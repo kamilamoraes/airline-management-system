@@ -39,6 +39,7 @@ while (opcao != "0")
         Console.WriteLine("1 - Cadastrar passageiro");
         Console.WriteLine("2 - Listar passageiros");
         Console.WriteLine("3 - Remover passageiro");
+        Console.WriteLine("4 - Editar passageiro");
         Console.WriteLine("0 - Voltar ao menu principal");
         Console.WriteLine("Escolha uma opção:");
 
@@ -140,6 +141,75 @@ while (opcao != "0")
 
             }
         }
+
+        else if (opcaoPassageiros == "4")
+        {
+            if (passageiros.Count == 0)
+        {
+            Console.WriteLine("Nenhum passageiro cadastrado para editar.");
+        }
+        else
+        {
+            Console.WriteLine("Passageiros cadastrados:");
+
+            for (int i = 0; i < passageiros.Count; i++)
+            {
+                Console.WriteLine($"{i + 1} - {passageiros[i]}");
+            }
+
+            Console.WriteLine("Digite o número do passageiro que deseja editar:");
+
+            string? entrada = Console.ReadLine();
+
+        if (int.TryParse(entrada, out int numero))
+{
+            if (numero >= 1 && numero <= passageiros.Count)
+            {
+                string passageiroAtual = passageiros[numero - 1];
+
+                Console.WriteLine($"Passageiro selecionado: {passageiroAtual}");
+
+                Console.WriteLine("Digite o novo nome do passageiro:");
+
+                string? novoNome = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(novoNome))
+                {
+                    Console.WriteLine("O novo nome não pode ficar vazio.");
+                }
+                else
+                {
+                    Console.WriteLine("Digite o novo sobrenome do passageiro:");
+
+                    string? novoSobrenome = Console.ReadLine();
+
+                    if (string.IsNullOrWhiteSpace(novoSobrenome))
+                    {
+                        Console.WriteLine("O novo sobrenome não pode ficar vazio.");
+                    }
+                    else
+                    {
+                        string novoNomeCompleto = $"{novoNome} {novoSobrenome}";
+
+                        passageiros[numero - 1] = novoNomeCompleto;
+
+                        Console.WriteLine($"Passageiro atualizado: {novoNomeCompleto}");
+                    }
+                    }
+            }
+            else
+            {
+                Console.WriteLine("Número de passageiro inválido.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Digite um número válido.");
+        }
+
+            }
+
+            }
 
         }
     }
