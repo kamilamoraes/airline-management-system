@@ -1,6 +1,8 @@
 ﻿string? opcao = "";
 List<string> passageiros = new List<string>();
 string? opcaoPassageiros = "";
+List<string> voos = new List<string>();
+string? opcaoVoos = "";
 
 while (opcao != "0")
 {
@@ -215,7 +217,231 @@ while (opcao != "0")
     }
     else if (opcao == "2")
     {
-        Console.WriteLine("Você selecionou Voos.");
+
+        opcaoVoos = "";
+
+        while (opcaoVoos != "0")
+        {
+
+        Console.WriteLine("=============================");
+        Console.WriteLine("         MENU DE VOOS         ");
+        Console.WriteLine("=============================");
+        Console.WriteLine("1 - Cadastrar voo");
+        Console.WriteLine("2 - Listar voos");
+        Console.WriteLine("3 - Remover voo");
+        Console.WriteLine("4 - Editar voo");
+        Console.WriteLine("0 - Voltar ao menu principal");
+        Console.WriteLine("Escolha uma opção:");
+
+        opcaoVoos = Console.ReadLine();
+
+        Console. Clear();
+
+        if (opcaoVoos == "0")
+        {
+            Console.WriteLine("Voltando ao menu principal...");
+            Console.WriteLine("Menu principal carregado.");
+        }
+        else if (opcaoVoos == "1")
+        {
+           Console.WriteLine("Você selecionou Cadastrar voo.");
+           Console.WriteLine("Digite o número do voo:");
+           string? numeroVoo = Console.ReadLine();
+
+        if (string. IsNullOrWhiteSpace(numeroVoo))
+        {
+            Console.WriteLine("O número não pode ficar vazio.");
+        }
+        else
+        {
+            Console.WriteLine("Digite a origem do voo:");
+
+            string? origem = Console.ReadLine();
+
+            if (String.IsNullOrWhiteSpace(origem))
+            {
+                Console.WriteLine("A origem não pode ficar vazio.");      
+            }
+            else
+        {
+            Console.WriteLine("Digite o destino do voo:");
+
+            string? destino = Console.ReadLine();
+
+            if (String.IsNullOrWhiteSpace(destino))
+            {
+                Console.WriteLine("O destino não pode ficar vazio.");      
+            }
+            else
+        {
+            Console.WriteLine("Digite o horário do voo:");
+
+            string? horario = Console.ReadLine();
+
+            if (String.IsNullOrWhiteSpace(horario))
+            {
+                Console.WriteLine("O horário não pode ficar vazio.");      
+            }
+            else
+            {
+                string vooCompleto = $"{numeroVoo} | {origem} | {destino} | {horario}";
+
+                voos.Add(vooCompleto);
+
+                Console.WriteLine($"Voo cadastrado: {vooCompleto}");
+            }
+        }
+    }
+}
+
+    }
+        else if (opcaoVoos == "2")
+        {
+            if (voos.Count == 0)
+            {
+                Console.WriteLine("Nenhum voo cadastrado.");      
+            }
+            else
+            {
+                Console.WriteLine("Voos cadastrados:");
+
+                for (int i = 0; i < voos.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1} - {voos[i]}");
+                }     
+            }
+        }
+
+         else if (opcaoVoos == "3")
+        {
+            if (voos.Count == 0)
+            {
+                Console.WriteLine("Nenhum voo cadastrado para remover.");
+            }
+            else
+            {
+                Console.WriteLine("Voos cadastrados:");
+
+            for (int i = 0; i < voos.Count; i++)
+            {
+                Console.WriteLine($"{i + 1} - {voos[i]}");
+            }
+
+                Console.WriteLine("Digite o número do voo que deseja remover:");
+
+                string? entrada = Console.ReadLine();
+
+            if (int.TryParse(entrada, out int numero))
+            {
+            if (numero >= 1 && numero <= voos.Count)
+            {
+                string vooRemovido = voos[numero - 1];
+
+                voos.RemoveAt(numero - 1);
+
+                Console.WriteLine($"Voo removido: {vooRemovido}");
+            }
+            else
+            {
+            Console.WriteLine("Número de voo inválido.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Digite um número válido.");
+        }
+
+            }
+        }
+
+        else if (opcaoVoos == "4")
+        {
+            if (voos.Count == 0)
+        {
+            Console.WriteLine("Nenhum voo cadastrado para editar.");
+        }
+        else
+        {
+            Console.WriteLine("Voos cadastrados:");
+
+            for (int i = 0; i < voos.Count; i++)
+            {
+                Console.WriteLine($"{i + 1} - {voos[i]}");
+            }
+
+            Console.WriteLine("Digite o número do voo que deseja editar:");
+
+            string? entrada = Console.ReadLine();
+
+        if (int.TryParse(entrada, out int numero))
+        {
+        if (numero >= 1 && numero <= voos.Count)
+        {
+            string vooAtual = voos[numero - 1];
+
+            Console.WriteLine($"Voo selecionado: {vooAtual}");
+
+            Console.WriteLine("Digite o novo número do voo:");
+            string? novoNumeroVoo = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(novoNumeroVoo))
+            {
+                Console.WriteLine("O novo número do voo não pode ficar vazio.");
+            }
+            else
+            {
+                Console.WriteLine("Digite a nova origem:");
+                string? novaOrigem = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(novaOrigem))
+            {
+                Console.WriteLine("A nova origem não pode ficar vazio.");
+            }
+            else
+            {
+                Console.WriteLine("Digite o novo destino:");
+                string? novoDestino = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(novoDestino))
+            {
+                Console.WriteLine("O novo destino não pode ficar vazio.");
+            }
+            else
+            {
+                Console.WriteLine("Digite o novo horário:");
+                string? novoHorario = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(novoHorario))
+            {
+               Console.WriteLine("O novo horário não pode ficar vazio.");
+            }
+            else
+            {
+                string novoVooCompleto = $"{novoNumeroVoo} | {novaOrigem} | {novoDestino} | {novoHorario}";
+
+                voos[numero - 1] = novoVooCompleto;
+
+                Console.WriteLine($"Voo atualizado: {novoVooCompleto}");
+            }
+            }
+        }
+    }
+}
+        else
+        {
+            Console.WriteLine("Número do voo inválido.");
+        }
+        }
+        else
+        {
+            Console.WriteLine("Digite um número válido.");
+        }
+
+            }
+
+            }
+
+        }
     }
     else if (opcao == "3")
     {
