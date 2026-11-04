@@ -3,6 +3,8 @@ List<string> passageiros = new List<string>();
 string? opcaoPassageiros = "";
 List<string> voos = new List<string>();
 string? opcaoVoos = "";
+List<string> aeronaves = new List<string>();
+string? opcaoAeronaves = "";
 
 while (opcao != "0")
 {
@@ -445,7 +447,230 @@ while (opcao != "0")
     }
     else if (opcao == "3")
     {
-        Console.WriteLine("Você selecionou Aeronaves.");
+        opcaoAeronaves = "";
+
+        while (opcaoAeronaves != "0")
+        {
+
+        Console.WriteLine("=============================");
+        Console.WriteLine("       MENU DE AERONAVES      ");
+        Console.WriteLine("=============================");
+        Console.WriteLine("1 - Cadastrar aeronave");
+        Console.WriteLine("2 - Listar aeronaves");
+        Console.WriteLine("3 - Remover aeronave");
+        Console.WriteLine("4 - Editar aeronave");
+        Console.WriteLine("0 - Voltar ao menu principal");
+        Console.WriteLine("Escolha uma opção:");
+
+        opcaoAeronaves = Console.ReadLine();
+
+        Console. Clear();
+
+        if (opcaoAeronaves == "0")
+        {
+            Console.WriteLine("Voltando ao menu principal...");
+            Console.WriteLine("Menu principal carregado.");
+        }
+        else if (opcaoAeronaves == "1")
+        {
+           Console.WriteLine("Você selecionou Cadastrar aeronave.");
+           Console.WriteLine("Digite o modelo da aeronave:");
+           string? modeloAeronave = Console.ReadLine();
+
+        if (string. IsNullOrWhiteSpace(modeloAeronave))
+        {
+            Console.WriteLine("O modelo não pode ficar vazio.");
+        }
+        else
+        {
+            Console.WriteLine("Digite o fabricante da aeronave:");
+
+            string? fabricante = Console.ReadLine();
+
+            if (String.IsNullOrWhiteSpace(fabricante))
+            {
+                Console.WriteLine("O fabricante não pode ficar vazio.");      
+            }
+            else
+        {
+            Console.WriteLine("Digite a capacidade da aeronave:");
+
+            string? capacidade = Console.ReadLine();
+
+            if (String.IsNullOrWhiteSpace(capacidade))
+            {
+                Console.WriteLine("A capacidade não pode ficar vazio.");      
+            }
+            else
+        {
+            Console.WriteLine("Digite o código de identificação da aeronave:");
+
+            string? codigoIdentificacao = Console.ReadLine();
+
+            if (String.IsNullOrWhiteSpace(codigoIdentificacao))
+            {
+                Console.WriteLine("O código de identificação não pode ficar vazio.");      
+            }
+            else
+            {
+                string aeronaveCompleta = $"{modeloAeronave} | {fabricante} | {capacidade} | {codigoIdentificacao}";
+
+                aeronaves.Add(aeronaveCompleta);
+
+                Console.WriteLine($"Aeronave cadastrada: {aeronaveCompleta}");
+            }
+        }
+    }
+}
+
+    }
+        else if (opcaoAeronaves == "2")
+        {
+            if (aeronaves.Count == 0)
+            {
+                Console.WriteLine("Nenhuma aeronave cadastrada.");      
+            }
+            else
+            {
+                Console.WriteLine("Aeronaves cadastradas:");
+
+                for (int i = 0; i < aeronaves.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1} - {aeronaves[i]}");
+                }     
+            }
+        }
+
+         else if (opcaoAeronaves == "3")
+        {
+            if (aeronaves.Count == 0)
+            {
+                Console.WriteLine("Nenhuma aeronave cadastrada para remover.");
+            }
+            else
+            {
+                Console.WriteLine("Aeronaves cadastradas:");
+
+            for (int i = 0; i < aeronaves.Count; i++)
+            {
+                Console.WriteLine($"{i + 1} - {aeronaves[i]}");
+            }
+
+                Console.WriteLine("Digite o número da aeronave que deseja remover:");
+
+                string? entrada = Console.ReadLine();
+
+            if (int.TryParse(entrada, out int numero))
+            {
+            if (numero >= 1 && numero <= aeronaves.Count)
+            {
+                string aeronaveRemovida = aeronaves[numero - 1];
+
+                aeronaves.RemoveAt(numero - 1);
+
+                Console.WriteLine($"Aeronave removida: {aeronaveRemovida}");
+            }
+            else
+            {
+            Console.WriteLine("Modelo de aeronave inválido.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Digite um modelo válido.");
+        }
+
+            }
+        }
+
+        else if (opcaoAeronaves == "4")
+        {
+            if (aeronaves.Count == 0)
+        {
+            Console.WriteLine("Nenhuma aeronave cadastrada para editar.");
+        }
+        else
+        {
+            Console.WriteLine("Aeronaves cadastradas:");
+
+            for (int i = 0; i < aeronaves.Count; i++)
+            {
+                Console.WriteLine($"{i + 1} - {aeronaves[i]}");
+            }
+
+            Console.WriteLine("Digite o modelo da aeronave que deseja editar:");
+
+            string? entrada = Console.ReadLine();
+
+        if (int.TryParse(entrada, out int numero))
+        {
+        if (numero >= 1 && numero <= aeronaves.Count)
+        {
+            string aeronaveAtual = aeronaves[numero - 1];
+
+            Console.WriteLine($"Aeronave selecionada: {aeronaveAtual}");
+
+            Console.WriteLine("Digite o novo modelo da aeronave:");
+            string? novoModeloAeronave = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(novoModeloAeronave))
+            {
+                Console.WriteLine("O novo modelo da aeronave não pode ficar vazio.");
+            }
+            else
+            {
+                Console.WriteLine("Digite o novo fabricante:");
+                string? novoFabricante = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(novoFabricante))
+            {
+                Console.WriteLine("O novo fabricante não pode ficar vazio.");
+            }
+            else
+            {
+                Console.WriteLine("Digite a nova capacidade:");
+                string? novaCapacidade = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(novaCapacidade))
+            {
+                Console.WriteLine("A nova cacacidade não pode ficar vazia.");
+            }
+            else
+            {
+                Console.WriteLine("Digite o novo código de identificação:");
+                string? novoCodigoIdentificacao = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(novoCodigoIdentificacao))
+            {
+               Console.WriteLine("O novo código de identificação não pode ficar vazio.");
+            }
+            else
+            {
+                string novaAeronaveCompleta = $"{novoModeloAeronave} | {novoFabricante} | {novaCapacidade} | {novoCodigoIdentificacao}";
+
+                aeronaves[numero - 1] = novaAeronaveCompleta;
+
+                Console.WriteLine($"Aeronave atualizada: {novaAeronaveCompleta}");
+            }
+            }
+        }
+    }
+}
+        else
+        {
+            Console.WriteLine("Modelo da aeronave inválida.");
+        }
+        }
+        else
+        {
+            Console.WriteLine("Digite um modelo válido.");
+        }
+
+            }
+
+            }
+
+        }
     }
     else if (opcao == "4")
     {
