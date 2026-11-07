@@ -1,4 +1,21 @@
-﻿string? opcao = "";
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using AirlineManagementSystem.Data;
+
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
+
+string connectionString = configuration.GetConnectionString("DefaultConnection")!;
+
+var optionsBuilder = new DbContextOptionsBuilder<AirlineDbContext>();
+
+optionsBuilder.UseSqlServer(connectionString);
+
+using var dbContext = new AirlineDbContext(optionsBuilder.Options);
+
+string? opcao = "";
 List<string> passageiros = new List<string>();
 string? opcaoPassageiros = "";
 List<string> voos = new List<string>();
