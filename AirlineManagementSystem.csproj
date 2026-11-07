@@ -17,9 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="appsttings.json">
-      <CopyToOutputDiretory>PreserveNewest</CopyToOutputDiretory>
-    </None>
-  </ItemGroup>
+  <None Update="appsettings.json">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
 
 </Project>

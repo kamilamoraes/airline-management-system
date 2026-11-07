@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using AirlineManagementSystem.Data;
+using AirlineManagementSystem.Models;
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(AppContext.BaseDirectory)
@@ -99,7 +100,14 @@ while (opcao != "0")
             {
                 string nomeCompleto = $"{nome} {sobrenome}";
 
-                passageiros.Add(nomeCompleto);
+                Passageiro novoPassageiro = new Passageiro
+                {
+                    Nome = nomeCompleto
+                };
+
+                dbContext.Passageiros.Add(novoPassageiro);
+
+                dbContext.SaveChanges();
 
                 Console.WriteLine($"Passageiro cadastrado: {nomeCompleto}");
             }
