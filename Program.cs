@@ -177,34 +177,39 @@ while (opcao != "0")
                     }
                 }
             }
+        
             
 
-        else if (opcaoPassageiros == "4")
-        {
-            if (passageiros.Count == 0)
-        {
-            Console.WriteLine("Nenhum passageiro cadastrado para editar.");
-        }
-        else
-        {
-            Console.WriteLine("Passageiros cadastrados:");
-
-            for (int i = 0; i < passageiros.Count; i++)
-            {
-                Console.WriteLine($"{i + 1} - {passageiros[i]}");
-            }
-
-            Console.WriteLine("Digite o número do passageiro que deseja editar:");
-
-            string? entrada = Console.ReadLine();
-
-        if (int.TryParse(entrada, out int numero))
+        
+else if (opcaoPassageiros == "4")
 {
-            if (numero >= 1 && numero <= passageiros.Count)
-            {
-                string passageiroAtual = passageiros[numero - 1];
+    var passageirosCadastrados = dbContext.Passageiros.ToList();
 
-                Console.WriteLine($"Passageiro selecionado: {passageiroAtual}");
+    if (passageirosCadastrados.Count == 0)
+    {
+        Console.WriteLine("Nenhum passageiro cadastrado para editar.");
+    }
+    else
+    {
+        Console.WriteLine("Passageiros cadastrados:");
+
+        foreach (var passageiro in passageirosCadastrados)
+        {
+            Console.WriteLine($"{passageiro.Id} - {passageiro.Nome}");
+        }
+
+        Console.WriteLine("Digite o ID do passageiro que deseja editar:");
+
+        string? entrada = Console.ReadLine();
+
+        if (int.TryParse(entrada, out int id))
+        {
+            var passageiroEncontrado = dbContext.Passageiros
+                .FirstOrDefault(p => p.Id == id);
+
+            if (passageiroEncontrado != null)
+            {
+                Console.WriteLine($"Passageiro selecionado: {passageiroEncontrado.Nome}");
 
                 Console.WriteLine("Digite o novo nome do passageiro:");
 
@@ -228,25 +233,25 @@ while (opcao != "0")
                     {
                         string novoNomeCompleto = $"{novoNome} {novoSobrenome}";
 
-                        passageiros[numero - 1] = novoNomeCompleto;
+                        passageiroEncontrado.Nome = novoNomeCompleto;
+
+                        dbContext.SaveChanges();
 
                         Console.WriteLine($"Passageiro atualizado: {novoNomeCompleto}");
                     }
-                    }
+                }
             }
             else
             {
-                Console.WriteLine("Número de passageiro inválido.");
+                Console.WriteLine("Passageiro não encontrado.");
             }
         }
         else
         {
             Console.WriteLine("Digite um número válido.");
         }
-
-            }
-
-            }
+    }
+}
 
         }
     }
@@ -843,104 +848,99 @@ while (opcao != "0")
             }
         }
 
-        else if (opcaoReservas == "4")
+                else if (opcaoReservas == "4")
         {
             if (reservas.Count == 0)
-        {
-            Console.WriteLine("Nenhuma reserva cadastrada para editar.");
-        }
-        else
-        {
-            Console.WriteLine("Reservas cadastradas:");
-
-            for (int i = 0; i < reservas.Count; i++)
             {
-                Console.WriteLine($"{i + 1} - {reservas[i]}");
-            }
-
-            Console.WriteLine("Digite o número que deseja editar:");
-
-            string? entrada = Console.ReadLine();
-
-        if (int.TryParse(entrada, out int numero))
-        {
-        if (numero >= 1 && numero <= reservas.Count)
-        {
-            string reservaAtual = reservas[numero - 1];
-
-            Console.WriteLine($"Reserva selecionada: {reservaAtual}");
-
-            Console.WriteLine("Digite o novo nome do passageiro:");
-            string? novoNomePassageiro = Console.ReadLine();
-
-            if (string.IsNullOrWhiteSpace(novoNomePassageiro))
-            {
-                Console.WriteLine("O novo nome do passageiro não pode ficar vazio.");
+                Console.WriteLine("Nenhuma reserva cadastrada para editar.");
             }
             else
             {
-                Console.WriteLine("Digite o novo número do voo:");
-                string? novoNumeroVoo = Console.ReadLine();
+                Console.WriteLine("Reservas cadastradas:");
 
-            if (string.IsNullOrWhiteSpace(novoNumeroVoo))
-            {
-                Console.WriteLine("O novo número do voo não pode ficar vazio.");
-            }
-            else
-            {
-                Console.WriteLine("Digite o novo assento:");
-                string? novoAssento = Console.ReadLine();
+                for (int i = 0; i < reservas.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1} - {reservas[i]}");
+                }
 
-            if (string.IsNullOrWhiteSpace(novoAssento))
-            {
-                Console.WriteLine("O novo assento não pode ficar vazio.");
-            }
-            else
-            {
-                Console.WriteLine("Digite o novo código da reserva:");
-                string? novoCodigoReserva = Console.ReadLine();
+                Console.WriteLine("Digite o número que deseja editar:");
 
-            if (string.IsNullOrWhiteSpace(novoCodigoReserva))
-            {
-               Console.WriteLine("O novo código da reserva não pode ficar vazio.");
-            }
-            else
-            {
-                string novaReservaCompleta = $"{novoNomePassageiro} | {novoNumeroVoo} | {novoAssento} | {novoCodigoReserva}";
+                string? entrada = Console.ReadLine();
 
-                reservas[numero - 1] = novaReservaCompleta;
+                if (int.TryParse(entrada, out int numero))
+                {
+                    if (numero >= 1 && numero <= reservas.Count)
+                    {
+                        string reservaAtual = reservas[numero - 1];
 
-                Console.WriteLine($"Reserva atualizada: {novaReservaCompleta}");
-            }
+                        Console.WriteLine($"Reserva selecionada: {reservaAtual}");
+
+                        Console.WriteLine("Digite o novo nome do passageiro:");
+                        string? novoNomePassageiro = Console.ReadLine();
+
+                        if (string.IsNullOrWhiteSpace(novoNomePassageiro))
+                        {
+                            Console.WriteLine("O novo nome do passageiro não pode ficar vazio.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Digite o novo número do voo:");
+                            string? novoNumeroVoo = Console.ReadLine();
+
+                            if (string.IsNullOrWhiteSpace(novoNumeroVoo))
+                            {
+                                Console.WriteLine("O novo número do voo não pode ficar vazio.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Digite o novo assento:");
+                                string? novoAssento = Console.ReadLine();
+
+                                if (string.IsNullOrWhiteSpace(novoAssento))
+                                {
+                                    Console.WriteLine("O novo assento não pode ficar vazio.");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Digite o novo código da reserva:");
+                                    string? novoCodigoReserva = Console.ReadLine();
+
+                                    if (string.IsNullOrWhiteSpace(novoCodigoReserva))
+                                    {
+                                        Console.WriteLine("O novo código da reserva não pode ficar vazio.");
+                                    }
+                                    else
+                                    {
+                                        string novaReservaCompleta = $"{novoNomePassageiro} | {novoNumeroVoo} | {novoAssento} | {novoCodigoReserva}";
+
+                                        reservas[numero - 1] = novaReservaCompleta;
+
+                                        Console.WriteLine($"Reserva atualizada: {novaReservaCompleta}");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Número da reserva inválido.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Digite um número válido.");
+                }
             }
         }
     }
 }
-        else
-        {
-            Console.WriteLine("Número da reserva inválida.");
-        }
-        }
-        else
-        {
-            Console.WriteLine("Digite um número válido.");
-        }
-
-            }
-
-            }
-
-        }
-
-    }
-    else if (opcao == "0")
-    {
-        Console.WriteLine("Você escolheu sair do sistema.");
-        Console.WriteLine("Encerrando o Airline Management System. Até mais!");
-    }
-    else if (opcao != "")
-    {
-        Console.WriteLine("Opção inválida.");
-    }
-
-    }
+else if (opcao == "0")
+{
+    Console.WriteLine("Você escolheu sair do sistema.");
+    Console.WriteLine("Encerrando o Airline Management System. Até mais!");
+}
+else if (opcao != "")
+{
+    Console.WriteLine("Opção inválida.");
+}
+}
