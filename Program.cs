@@ -362,47 +362,49 @@ else if (opcaoPassageiros == "4")
             }
         }
 
-         else if (opcaoVoos == "3")
+        else if (opcaoVoos == "3")
+{
+    var voosCadastrados = dbContext.Voos.ToList();
+
+    if (voosCadastrados.Count == 0)
+    {
+        Console.WriteLine("Nenhum voo cadastrado para remover.");
+    }
+    else
+    {
+        Console.WriteLine("Voos cadastrados:");
+
+        foreach (var voo in voosCadastrados)
         {
-            if (voos.Count == 0)
+            Console.WriteLine($"ID: {voo.Id} | Número: {voo.NumeroVoo} | Origem: {voo.Origem} | Destino: {voo.Destino}");
+        }
+
+        Console.WriteLine("Digite o ID do voo que deseja remover:");
+
+        string? entrada = Console.ReadLine();
+
+        if (int.TryParse(entrada, out int id))
+        {
+            var vooRemovido = dbContext.Voos.FirstOrDefault(v => v.Id == id);
+
+            if (vooRemovido != null)
             {
-                Console.WriteLine("Nenhum voo cadastrado para remover.");
+                dbContext.Voos.Remove(vooRemovido);
+                dbContext.SaveChanges();
+
+                Console.WriteLine($"Voo removido: {vooRemovido.NumeroVoo}");
             }
             else
             {
-                Console.WriteLine("Voos cadastrados:");
-
-            for (int i = 0; i < voos.Count; i++)
-            {
-                Console.WriteLine($"{i + 1} - {voos[i]}");
-            }
-
-                Console.WriteLine("Digite o número do voo que deseja remover:");
-
-                string? entrada = Console.ReadLine();
-
-            if (int.TryParse(entrada, out int numero))
-            {
-            if (numero >= 1 && numero <= voos.Count)
-            {
-                string vooRemovido = voos[numero - 1];
-
-                voos.RemoveAt(numero - 1);
-
-                Console.WriteLine($"Voo removido: {vooRemovido}");
-            }
-            else
-            {
-            Console.WriteLine("Número de voo inválido.");
+                Console.WriteLine("ID do voo não encontrado.");
             }
         }
         else
         {
             Console.WriteLine("Digite um número válido.");
         }
-
-            }
-        }
+    }
+}    
 
         else if (opcaoVoos == "4")
         {
