@@ -344,7 +344,10 @@ else if (opcaoPassageiros == "4")
     }
         else if (opcaoVoos == "2")
         {
-            if (voos.Count == 0)
+
+            var voosCadastrados = dbContext.Voos.ToList();
+
+            if (voosCadastrados.Count == 0)
             {
                 Console.WriteLine("Nenhum voo cadastrado.");      
             }
@@ -352,10 +355,10 @@ else if (opcaoPassageiros == "4")
             {
                 Console.WriteLine("Voos cadastrados:");
 
-                for (int i = 0; i < voos.Count; i++)
+                foreach (var voo in voosCadastrados)
                 {
-                    Console.WriteLine($"{i + 1} - {voos[i]}");
-                }     
+                    Console.WriteLine($"ID: {voo.Id} | Número: {voo.NumeroVoo} | Origem: {voo.Origem} | Destino: {voo.Destino} | Horário: {voo.Horario}");    
+                }  
             }
         }
 
