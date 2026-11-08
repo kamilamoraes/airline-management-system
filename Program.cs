@@ -324,11 +324,18 @@ else if (opcaoPassageiros == "4")
             }
             else
             {
-                string vooCompleto = $"{numeroVoo} | {origem} | {destino} | {horario}";
+                var novoVoo = new Voo
+                {
+                    NumeroVoo = numeroVoo,
+                    Origem = origem,
+                    Destino = destino,
+                    Horario = horario
+                };
 
-                voos.Add(vooCompleto);
+                dbContext.Voos.Add(novoVoo);
+                dbContext.SaveChanges();
 
-                Console.WriteLine($"Voo cadastrado: {vooCompleto}");
+                Console.WriteLine($"Voo cadastrado com sucesso! ID: {novoVoo.Id}");
             }
         }
     }
