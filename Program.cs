@@ -116,18 +116,20 @@ while (opcao != "0")
     }
         else if (opcaoPassageiros == "2")
         {
-            if (passageiros.Count == 0)
+            var passageirosCadastrados = dbContext.Passageiros.ToList();
+
+            if (passageirosCadastrados.Count == 0)
             {
-                Console.WriteLine("Nenhum passageiro cadastrado.");      
+                Console.WriteLine("Nenhum passageiro cadastrado.");    
             }
             else
             {
                 Console.WriteLine("Passageiros cadastrados:");
 
-                for (int i = 0; i < passageiros.Count; i++)
+                foreach (var passageiro in passageirosCadastrados)
                 {
-                    Console.WriteLine($"{i + 1} - {passageiros[i]}");
-                }     
+                     Console.WriteLine($"{passageiro.Id} - {passageiro.Nome}");   
+                }    
             }
         }
 
