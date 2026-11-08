@@ -406,95 +406,98 @@ else if (opcaoPassageiros == "4")
     }
 }    
 
-        else if (opcaoVoos == "4")
+     else if (opcaoVoos == "4")
+{
+    var voosCadastrados = dbContext.Voos.ToList();
+
+    if (voosCadastrados.Count == 0)
+    {
+        Console.WriteLine("Nenhum voo cadastrado para editar.");
+    }
+    else
+    {
+        Console.WriteLine("Voos cadastrados:");
+
+        foreach (var voo in voosCadastrados)
         {
-            if (voos.Count == 0)
+            Console.WriteLine($"ID: {voo.Id} | Número: {voo.NumeroVoo} | Origem: {voo.Origem} | Destino: {voo.Destino} | Horário: {voo.Horario}");
+        }
+
+        Console.WriteLine("Digite o ID do voo que deseja editar:");
+
+        string? entrada = Console.ReadLine();
+
+        if (int.TryParse(entrada, out int id))
         {
-            Console.WriteLine("Nenhum voo cadastrado para editar.");
+            var vooAtual = dbContext.Voos.FirstOrDefault(v => v.Id == id);
+
+            if (vooAtual != null)
+            {
+                Console.WriteLine($"Voo selecionado: {vooAtual.NumeroVoo}");
+
+                Console.WriteLine("Digite o novo número do voo:");
+                string? novoNumeroVoo = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(novoNumeroVoo))
+                {
+                    Console.WriteLine("O novo número do voo não pode ficar vazio.");
+                }
+                else
+                {
+                    Console.WriteLine("Digite a nova origem:");
+                    string? novaOrigem = Console.ReadLine();
+
+                    if (string.IsNullOrWhiteSpace(novaOrigem))
+                    {
+                        Console.WriteLine("A nova origem não pode ficar vazia.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Digite o novo destino:");
+                        string? novoDestino = Console.ReadLine();
+
+                        if (string.IsNullOrWhiteSpace(novoDestino))
+                        {
+                            Console.WriteLine("O novo destino não pode ficar vazio.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Digite o novo horário:");
+                            string? novoHorario = Console.ReadLine();
+
+                            if (string.IsNullOrWhiteSpace(novoHorario))
+                            {
+                                Console.WriteLine("O novo horário não pode ficar vazio.");
+                            }
+                            else
+                            {
+                                vooAtual.NumeroVoo = novoNumeroVoo;
+                                vooAtual.Origem = novaOrigem;
+                                vooAtual.Destino = novoDestino;
+                                vooAtual.Horario = novoHorario;
+
+                                dbContext.SaveChanges();
+
+                                Console.WriteLine("Voo atualizado com sucesso!");
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("ID do voo não encontrado.");
+            }
         }
         else
         {
-            Console.WriteLine("Voos cadastrados:");
-
-            for (int i = 0; i < voos.Count; i++)
-            {
-                Console.WriteLine($"{i + 1} - {voos[i]}");
-            }
-
-            Console.WriteLine("Digite o número do voo que deseja editar:");
-
-            string? entrada = Console.ReadLine();
-
-        if (int.TryParse(entrada, out int numero))
-        {
-        if (numero >= 1 && numero <= voos.Count)
-        {
-            string vooAtual = voos[numero - 1];
-
-            Console.WriteLine($"Voo selecionado: {vooAtual}");
-
-            Console.WriteLine("Digite o novo número do voo:");
-            string? novoNumeroVoo = Console.ReadLine();
-
-            if (string.IsNullOrWhiteSpace(novoNumeroVoo))
-            {
-                Console.WriteLine("O novo número do voo não pode ficar vazio.");
-            }
-            else
-            {
-                Console.WriteLine("Digite a nova origem:");
-                string? novaOrigem = Console.ReadLine();
-
-            if (string.IsNullOrWhiteSpace(novaOrigem))
-            {
-                Console.WriteLine("A nova origem não pode ficar vazio.");
-            }
-            else
-            {
-                Console.WriteLine("Digite o novo destino:");
-                string? novoDestino = Console.ReadLine();
-
-            if (string.IsNullOrWhiteSpace(novoDestino))
-            {
-                Console.WriteLine("O novo destino não pode ficar vazio.");
-            }
-            else
-            {
-                Console.WriteLine("Digite o novo horário:");
-                string? novoHorario = Console.ReadLine();
-
-            if (string.IsNullOrWhiteSpace(novoHorario))
-            {
-               Console.WriteLine("O novo horário não pode ficar vazio.");
-            }
-            else
-            {
-                string novoVooCompleto = $"{novoNumeroVoo} | {novaOrigem} | {novoDestino} | {novoHorario}";
-
-                voos[numero - 1] = novoVooCompleto;
-
-                Console.WriteLine($"Voo atualizado: {novoVooCompleto}");
-            }
-            }
+            Console.WriteLine("Digite um ID válido.");
         }
     }
 }
-        else
-        {
-            Console.WriteLine("Número do voo inválido.");
-        }
-        }
-        else
-        {
-            Console.WriteLine("Digite um número válido.");
-        }
-
-            }
-
-            }
-
         }
     }
+
     else if (opcao == "3")
     {
         opcaoAeronaves = "";
