@@ -829,22 +829,24 @@ else if (opcaoAeronaves == "4")
 }
 
     }
-        else if (opcaoReservas == "2")
-        {
-            if (reservas.Count == 0)
-            {
-                Console.WriteLine("Nenhuma reserva cadastrada.");      
-            }
-            else
-            {
-                Console.WriteLine("Reservas cadastradas:");
+    else if (opcaoReservas == "2")
+{
+    var reservasCadastradas = dbContext.Reservas.ToList();
 
-                for (int i = 0; i < reservas.Count; i++)
-                {
-                    Console.WriteLine($"{i + 1} - {reservas[i]}");
-                }     
-            }
+    if (reservasCadastradas.Count == 0)
+    {
+        Console.WriteLine("Nenhuma reserva cadastrada.");
+    }
+    else
+    {
+        Console.WriteLine("Reservas cadastradas:");
+
+        foreach (var reserva in reservasCadastradas)
+        {
+            Console.WriteLine($"ID: {reserva.Id} | Passageiro: {reserva.NomePassageiro} | Voo: {reserva.NumeroVoo} | Assento: {reserva.Assento} | Código: {reserva.CodigoReserva}");
         }
+    }
+}
 
          else if (opcaoReservas == "3")
         {
