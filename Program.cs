@@ -848,47 +848,50 @@ else if (opcaoAeronaves == "4")
     }
 }
 
-         else if (opcaoReservas == "3")
+        else if (opcaoReservas == "3")
+{
+    var reservasCadastradas = dbContext.Reservas.ToList();
+
+    if (reservasCadastradas.Count == 0)
+    {
+        Console.WriteLine("Nenhuma reserva cadastrada para remover.");
+    }
+    else
+    {
+        Console.WriteLine("Reservas cadastradas:");
+
+        foreach (var reserva in reservasCadastradas)
         {
-            if (reservas.Count == 0)
+            Console.WriteLine($"ID: {reserva.Id} | Passageiro: {reserva.NomePassageiro} | Voo: {reserva.NumeroVoo}");
+        }
+
+        Console.WriteLine("Digite o ID da reserva que deseja remover:");
+
+        string? entrada = Console.ReadLine();
+
+        if (int.TryParse(entrada, out int id))
+        {
+            var reservaSelecionada = dbContext.Reservas.FirstOrDefault(r => r.Id == id);
+
+            if (reservaSelecionada != null)
             {
-                Console.WriteLine("Nenhuma reserva cadastrada para remover.");
+                dbContext.Reservas.Remove(reservaSelecionada);
+
+                dbContext.SaveChanges();
+
+                Console.WriteLine($"Reserva removida com sucesso! ID: {id}");
             }
             else
             {
-                Console.WriteLine("Reservas cadastradas:");
-
-            for (int i = 0; i < reservas.Count; i++)
-            {
-                Console.WriteLine($"{i + 1} - {reservas[i]}");
-            }
-
-                Console.WriteLine("Digite o número da reserva que deseja remover:");
-
-                string? entrada = Console.ReadLine();
-
-            if (int.TryParse(entrada, out int numero))
-            {
-            if (numero >= 1 && numero <= reservas.Count)
-            {
-                string reservaRemovida = reservas[numero - 1];
-
-                reservas.RemoveAt(numero - 1);
-
-                Console.WriteLine($"Reserva removida: {reservaRemovida}");
-            }
-            else
-            {
-            Console.WriteLine("Número da reserva inválido.");
+                Console.WriteLine("ID da reserva não encontrado.");
             }
         }
         else
         {
-            Console.WriteLine("Digite um número válido.");
+            Console.WriteLine("Digite um ID válido.");
         }
-
-            }
-        }
+    }
+}
 
                 else if (opcaoReservas == "4")
         {
