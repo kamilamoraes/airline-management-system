@@ -605,47 +605,50 @@ else if (opcaoPassageiros == "4")
             }
         }
 
-         else if (opcaoAeronaves == "3")
+    else if (opcaoAeronaves == "3")
+{
+    var aeronavesCadastradas = dbContext.Aeronaves.ToList();
+
+    if (aeronavesCadastradas.Count == 0)
+    {
+        Console.WriteLine("Nenhuma aeronave cadastrada para remover.");
+    }
+    else
+    {
+        Console.WriteLine("Aeronaves cadastradas:");
+
+        foreach (var aeronave in aeronavesCadastradas)
         {
-            if (aeronaves.Count == 0)
+            Console.WriteLine($"ID: {aeronave.Id} | Modelo: {aeronave.Modelo} | Fabricante: {aeronave.Fabricante}");
+        }
+
+        Console.WriteLine("Digite o ID da aeronave que deseja remover:");
+
+        string? entrada = Console.ReadLine();
+
+        if (int.TryParse(entrada, out int id))
+        {
+            var aeronaveSelecionada = dbContext.Aeronaves.FirstOrDefault(a => a.Id == id);
+
+            if (aeronaveSelecionada != null)
             {
-                Console.WriteLine("Nenhuma aeronave cadastrada para remover.");
+                dbContext.Aeronaves.Remove(aeronaveSelecionada);
+
+                dbContext.SaveChanges();
+
+                Console.WriteLine($"Aeronave removida com sucesso! ID: {id}");
             }
             else
             {
-                Console.WriteLine("Aeronaves cadastradas:");
-
-            for (int i = 0; i < aeronaves.Count; i++)
-            {
-                Console.WriteLine($"{i + 1} - {aeronaves[i]}");
-            }
-
-                Console.WriteLine("Digite o número da aeronave que deseja remover:");
-
-                string? entrada = Console.ReadLine();
-
-            if (int.TryParse(entrada, out int numero))
-            {
-            if (numero >= 1 && numero <= aeronaves.Count)
-            {
-                string aeronaveRemovida = aeronaves[numero - 1];
-
-                aeronaves.RemoveAt(numero - 1);
-
-                Console.WriteLine($"Aeronave removida: {aeronaveRemovida}");
-            }
-            else
-            {
-            Console.WriteLine("Modelo de aeronave inválido.");
+                Console.WriteLine("ID da aeronave não encontrado.");
             }
         }
         else
         {
-            Console.WriteLine("Digite um modelo válido.");
+            Console.WriteLine("Digite um ID válido.");
         }
-
-            }
-        }
+    }
+}
 
 
 else if (opcaoAeronaves == "4")
