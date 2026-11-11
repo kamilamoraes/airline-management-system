@@ -548,11 +548,11 @@ else if (opcaoPassageiros == "4")
         {
             Console.WriteLine("Digite a capacidade da aeronave:");
 
-            string? capacidade = Console.ReadLine();
+            string? entradaCapacidade = Console.ReadLine();
 
-            if (String.IsNullOrWhiteSpace(capacidade))
+            if (!int.TryParse(entradaCapacidade, out int capacidade) || capacidade <= 0)
             {
-                Console.WriteLine("A capacidade não pode ficar vazio.");      
+                Console.WriteLine("Digite uma capacidade válida.");      
             }
             else
         {
@@ -566,11 +566,19 @@ else if (opcaoPassageiros == "4")
             }
             else
             {
-                string aeronaveCompleta = $"{modeloAeronave} | {fabricante} | {capacidade} | {codigoIdentificacao}";
+                var novaAeronave = new Aeronave
+                {
+                    Modelo = modeloAeronave,
+                    Fabricante = fabricante,
+                    Capacidade = capacidade,
+                    CodigoIdentificacao = codigoIdentificacao
+                };
 
-                aeronaves.Add(aeronaveCompleta);
+                dbContext.Aeronaves.Add(novaAeronave);
 
-                Console.WriteLine($"Aeronave cadastrada: {aeronaveCompleta}");
+                dbContext.SaveChanges();
+
+                Console.WriteLine($"Aeronave cadastrada com sucesso! ID: {novaAeronave.Id}");
             }
         }
     }
