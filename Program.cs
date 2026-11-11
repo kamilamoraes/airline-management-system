@@ -587,7 +587,10 @@ else if (opcaoPassageiros == "4")
     }
         else if (opcaoAeronaves == "2")
         {
-            if (aeronaves.Count == 0)
+
+            var aeronavesCadastradas = dbContext.Aeronaves.ToList();
+
+            if (aeronavesCadastradas.Count == 0)
             {
                 Console.WriteLine("Nenhuma aeronave cadastrada.");      
             }
@@ -595,9 +598,9 @@ else if (opcaoPassageiros == "4")
             {
                 Console.WriteLine("Aeronaves cadastradas:");
 
-                for (int i = 0; i < aeronaves.Count; i++)
+                foreach (var aeronave in aeronavesCadastradas)
                 {
-                    Console.WriteLine($"{i + 1} - {aeronaves[i]}");
+                    Console.WriteLine($"ID: {aeronave.Id} | Modelo: {aeronave.Modelo} | Fabricante: {aeronave.Fabricante} | Capacidade: {aeronave.Capacidade} | Código: {aeronave.CodigoIdentificacao}");
                 }     
             }
         }
