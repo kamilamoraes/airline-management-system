@@ -810,11 +810,19 @@ else if (opcaoAeronaves == "4")
             }
             else
             {
-                string reservaCompleta = $"{nomePassageiro} | {numeroVoo} | {assento} | {codigoReserva}";
+                var novaReserva = new Reserva
+                {
+                    NomePassageiro = nomePassageiro,
+                    NumeroVoo = numeroVoo,
+                    Assento = assento,
+                    CodigoReserva = codigoReserva
+                };
 
-                reservas.Add(reservaCompleta);
+                dbContext.Reservas.Add(novaReserva);
 
-                Console.WriteLine($"Reserva cadastrada: {reservaCompleta}");
+                dbContext.SaveChanges();
+
+                Console.WriteLine($"Reserva cadastrada com sucesso! ID: {novaReserva.Id}");
             }
         }
     }
