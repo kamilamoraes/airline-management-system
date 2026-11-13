@@ -4,30 +4,34 @@ A console-based airline management system developed in C# to practice object-ori
 
 ## About the Project
 
-This project simulates the management of an airline system through a console application.
+This project is a console-based airline management system developed in C#.
 
-The project will be developed progressively, applying C# concepts and software development practices throughout its evolution.
+It allows users to manage passengers, flights, aircraft, and reservations through CRUD operations (Create, Read, Update, and Delete).
+
+The application uses Entity Framework Core to interact with a SQL Server database, ensuring data persistence while reinforcing object-oriented programming and database integration concepts.
 
 ## Objectives
 
-* Practice C# programming fundamentals
-* Apply object-oriented programming concepts
-* Develop problem-solving and programming logic
-* Practice project organization and code structure
-* Build a practical software development project
+* Practice C# programming and object-oriented programming concepts
+* Implement CRUD operations for passengers, flights, aircraft, and reservations
+* Integrate a C# application with a SQL Server database
+* Use Entity Framework Core for data access and persistence
+* Improve programming logic and project organization
 
 ## Technologies
 
 * C#
-* .NET
+* .NET 9
+* Entity Framework Core
+* SQL Server
 * Git
 * GitHub
 
 ## Project Status
 
-🚧 In development
+🚧 Initial development completed.
 
-The project is currently in its initial setup phase. Development will be implemented progressively as new concepts are studied.
+The main CRUD operations and SQL Server integration have been implemented. Testing, code organization, and final documentation review are pending.
 
 ## Author
 
