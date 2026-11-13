@@ -29,9 +29,14 @@ The application uses Entity Framework Core to interact with a SQL Server databas
 
 ## Project Status
 
-🚧 Initial development completed.
 
-The main CRUD operations and SQL Server integration have been implemented. Testing, code organization, and final documentation review are pending.
+✅ Initial development completed.
+
+The main CRUD operations for passengers, flights, aircraft, and reservations have been implemented and tested.
+
+The application is integrated with SQL Server using Entity Framework Core.
+
+Future improvements and additional features are planned.
 
 ## Author
 

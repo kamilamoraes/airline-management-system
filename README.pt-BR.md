@@ -29,9 +29,15 @@ A aplicação utiliza o Entity Framework Core para interagir com um banco de dad
 
 ## Status do Projeto
 
-🚧 Desenvolvimento inicial concluído.
+## Status do Projeto
 
-As principais operações CRUD e a integração com o SQL Server foram implementadas. Os testes, a organização do código e a revisão final da documentação ainda estão pendentes.
+✅ Desenvolvimento inicial concluído.
+
+As principais operações CRUD de passageiros, voos, aeronaves e reservas foram implementadas e testadas.
+
+A aplicação está integrada ao SQL Server utilizando Entity Framework Core.
+
+Melhorias futuras e novas funcionalidades estão planejadas.
 
 ## Autor
 
