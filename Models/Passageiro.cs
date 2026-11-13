@@ -1,4 +1,4 @@
-namespace AirlineManagementSystem. Models
+namespace AirlineManagementSystem.Models
 {
     public class Passageiro
     {
